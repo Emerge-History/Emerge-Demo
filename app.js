@@ -29,7 +29,8 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+// 打印请求
+// app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -43,6 +44,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   resave: true,
 //   saveUninitialized: true
 // }));
+
+app.use(session({
+  resave: true, // don't save session if unmodified
+  saveUninitialized: false, // don't create session until something stored
+  secret: 'love'
+}));
+
 
 // 使用路由
 app.use('/', webRouter);

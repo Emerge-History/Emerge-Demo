@@ -5,12 +5,14 @@ var User = models.User;
  * 新建一个用户
  * @param  {[type]} username     [用户名]
  * @param  {[type]} hashPassword [哈希化的密码]
+ * @param  {[type]} email        [邮箱]
  * @return {[type]}              [promise对象]
  */
-exports.createUser = function(username, hashPassword){
+exports.createUser = function(username, hashPassword, email){
 	return User.create({
 	  username: username,
-	  password: hashPassword
+	  password: hashPassword,
+	  email: email
 	});
 };
 

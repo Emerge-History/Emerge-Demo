@@ -7,5 +7,64 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <button id="test">test</button>
+    <img id="img" src="/captchapng" alt="captcha">
+    <input type="text" placeholder="name" id="ouzz">
+    <input type="text" placeholder="email" id="email">
+    <input type="text" id="input">
+    <br><br><br><br><br><br>
+    
+    <input type="text" placeholder="name" id="loginName">
+    <input type="text" placeholder="password" id="loginPass">
+     <button id="login">login</button>
+<br><br><br><br><br><br>
+<a href="/logout">logout</a>
+<br><br><br><br><br><br>
+<input type="text" id="forget-email" placeholder="邮箱">
+<button id="forget-getCode">发送验证码</button>
+
+<input type="text" id="forget-code" placeholder="验证码">
+<button id="forget-check">验证</button>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1-rc1/jquery.min.js"></script>
+    <script>
+    	$('#test').click(function(event) {
+        var img = $('#img');
+        var str = img.attr('src') + '?' + Math.random();
+        img.attr('src', str);
+				$.post('/register', {
+					"username": $('#ouzz').val(),
+					"password": "123456",
+					"email": $('#email').val(),
+          "captcha": $('#input').val()
+				}, function(data) {
+					console.log(data);
+				});			
+    	});
+      $('#login').click(function(event) {
+        $.post('/login', {
+          "loginname": $('#loginName').val(),
+          "password": $('#loginPass').val()
+        }, function(data) {
+          console.log(data);
+        });     
+      });
+      $('#forget-getCode').click(function(event) {
+        $.post('/sendFindPassMail', {
+          "email": $('#forget-email').val()
+        }, function(data) {
+          console.log(data);
+        });   
+      });
+$('#forget-check').click(function(event) {
+  $.post('checkFindPassCode', {code: $('#forget-code').val()}, function(data) {
+    /*optional stuff to do after success */
+    console.log(data);
+  });
+});
+
+
+    </script>
   </body>
 </html>

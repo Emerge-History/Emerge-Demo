@@ -8,6 +8,7 @@
   "dependencies": {
     "bcryptjs": "^2.3.0",
     "body-parser": "~1.15.1",
+    "captchapng": "0.0.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "ejs": "~2.4.1",
@@ -18,6 +19,7 @@
     "morgan": "~1.7.0",
     "mysql": "^2.11.1",
     "nodemailer": "^2.5.0",
+    "nodemailer-smtp-transport": "^2.6.0",
     "sequelize": "^3.23.6",
     "serve-favicon": "~2.3.0",
     "validator": "^5.5.0"
