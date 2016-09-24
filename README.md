@@ -1,2 +1,1 @@
-# emergeDemo
-emergeDemo 
+# Emerge-Demo

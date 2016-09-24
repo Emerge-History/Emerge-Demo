@@ -1,27 +1,7 @@
 {
-  "name": "emergeDemo",
-  "version": "0.0.0",
-  "private": true,
+  "name": "emerge-demo",
+  "version": "1.0.0",
   "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.3.0",
-    "body-parser": "~1.15.1",
-    "captchapng": "0.0.1",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.2.0",
-    "ejs": "~2.4.1",
-    "eventproxy": "^0.3.5",
-    "express": "~4.13.4",
-    "express-mysql-session": "^1.1.1",
-    "express-session": "^1.14.0",
-    "morgan": "~1.7.0",
-    "mysql": "^2.11.1",
-    "nodemailer": "^2.5.0",
-    "nodemailer-smtp-transport": "^2.6.0",
-    "sequelize": "^3.23.6",
-    "serve-favicon": "~2.3.0",
-    "validator": "^5.5.0"
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
