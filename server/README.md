@@ -2,12 +2,12 @@
 
 ## Usage
 
-### select NODE_ENV
-NODE_ENV can be test, dev, pro  default:dev
+### Change Environment
+open ./src/config.js and change the 'env' field to 'development, test, production' 
 
-for example
 ```js
-set NODE_ENV=test & npm start
+// for example
+env:'test' => env:'development'
 ```
 
 ### start the server 

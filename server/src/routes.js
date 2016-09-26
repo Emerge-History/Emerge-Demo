@@ -1,8 +1,20 @@
 import { Router } from 'express';
+import sign from './controllers/sign';
 const router = Router();
 
-router.get('/', function (req, res, next) {
-  res.json({test: 'test'})
-})
+
+
+
+
+
+
+router.get('/test', sign.test)
+
+router.get('/register', sign.register);
+
+
+
+
+
 
 export default router
