@@ -9,6 +9,7 @@ import config from './config'
 import routes from './routes'
 import models from './models'
 import http from 'http'
+import xss from 'xss'
 
 const app = express()
 const server = http.createServer(app)

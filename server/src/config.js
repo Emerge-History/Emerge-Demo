@@ -1,5 +1,17 @@
 export default {
     env:'test',
+	mail: {
+        service: 'QQ',
+        auth: {
+        user: '627290897@qq.com',
+        pass: 'hjtabc110'
+        }
+        // service: 'outlook',
+        // auth: {
+        //   user: 'rina.tang@emerge.cc',
+        //   pass: 'tang899.'
+        // }
+	},
     development: {
         db:{
             dialect: 'sqlite',
