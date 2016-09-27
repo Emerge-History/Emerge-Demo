@@ -1,12 +1,22 @@
 import User from '../crud/user'
+import config from '../config'
 import { bad, good, validator, bhash, bcompare, mail } from '../tool'
+import jwt from 'jsonwebtoken'
 const sign = {}
 
-sign.test = (req, res) => {
+sign.test1 = (req, res) => {
   User.findAll().then((v) => {
-    res.json(v)
+    console.log(v)
+    res.json({user: req.user})
   })
 }
+sign.test2 = (req, res) => {
+  User.findAll().then((v) => {
+    console.log(v)
+    res.json({user: req.user})
+  })
+}
+
 
 
 // register
@@ -77,7 +87,12 @@ sign.login = async(req, res, next) => {
       if(!result){
         return bad(res, '密码错误！')
       } else {
-        return good(res, '登录成功！')
+        const token = jwt.sign({
+          user: user.id
+        }, config.secret, {
+          expiresIn: "10h"
+        })
+        return good(res, '登录成功！',{token})
       }
     })
   } else {

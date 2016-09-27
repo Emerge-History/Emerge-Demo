@@ -1,5 +1,5 @@
 export default {
-    env:'test',
+    env:'development',
 	mail: {
         service: 'QQ',
         auth: {
@@ -12,6 +12,7 @@ export default {
         //   pass: 'tang899.'
         // }
 	},
+    secret: 'shhhhhhared-secret',
     development: {
         db:{
             dialect: 'sqlite',

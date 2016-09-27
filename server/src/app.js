@@ -39,17 +39,25 @@ app.use('/api', routes)
 
 
 // handle errors
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(500).json({
+      msg: '验证失败！',
+      success: false
+    })
+  }
 });
+// app.use(function(req, res, next) {
+//   var err = new Error('Not Found');
+//   err.status = 404;
+//   next(err);
+// });
 
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  log.debug(err.message)
-  log.error(err)
-});
+// app.use(function(err, req, res, next) {
+//   res.status(err.status || 500);
+//   log.debug(err.message)
+//   log.error(err)
+// });
 
 
 
