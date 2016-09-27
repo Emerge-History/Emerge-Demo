@@ -8,14 +8,13 @@ sign.test = (req, res) => {
   })
 }
 
+
+// register
 sign.register = async(req, res, next) => {
-
   let {username, password, email} = req.body
-
-  username = validator.trim(req.body.username||'')
-  password = validator.trim(req.body.password||'')
-  email = validator.trim(req.body.email||'')
-
+  username = validator.trim(username||'')
+  password = validator.trim(password||'')
+  email = validator.trim(email||'')
   if(!(username && password && email)) {
     return bad(res, '信息不完整！')
   }
@@ -28,7 +27,6 @@ sign.register = async(req, res, next) => {
   if(!validator.isPassword(password)){
     return bad(res, '密码不合法！');
   }
-
   const user = await User.findUser(username, email)
   if (user) {
     if(user.username === username) {
@@ -52,5 +50,42 @@ sign.register = async(req, res, next) => {
     })
   })
 }
+
+// login
+sign.login = async(req, res, next) => {
+  let {account, password} = req.body
+  account = validator.trim(account||'')
+  password = validator.trim(password||'')
+  if(!(account && password)) {
+    return bad(res, '信息不完整！')
+  }
+  if(account.indexOf('@') !== -1){
+    if(!validator.isEmail(account)){
+      return bad(res, '邮箱不合法！');
+    }
+  } else {
+    if(!validator.isUsername(account)){
+      return bad(res, '用户名不合法！');
+    } 
+  }
+  const user = await User.findUser(account, account)
+  if (user) {
+    bcompare(password, user.password, (err, result)=> {
+      if(err){
+        return bad(res, '登录失败！请稍后再试')
+      }
+      if(!result){
+        return bad(res, '密码错误！')
+      } else {
+        return good(res, '登录成功！')
+      }
+    })
+  } else {
+    return bad(res, '账号不存在！');
+  }
+
+}
+
+
 
 export default sign

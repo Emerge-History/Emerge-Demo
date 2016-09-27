@@ -11,7 +11,7 @@ const router = Router();
 router.get('/test', sign.test)
 
 router.post('/register', sign.register);
-
+router.post('/login', sign.login);
 
 
 
