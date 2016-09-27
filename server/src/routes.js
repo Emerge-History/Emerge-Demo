@@ -10,7 +10,7 @@ const router = Router();
 
 router.get('/test', sign.test)
 
-router.get('/register', sign.register);
+router.post('/register', sign.register);
 
 
 

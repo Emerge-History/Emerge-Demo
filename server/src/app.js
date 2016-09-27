@@ -27,8 +27,32 @@ if (config.env === 'development') {
   app.use(logger('dev'))
 }
 
+
+
+
 // use routes
 app.use('/api', routes)
+
+
+
+
+
+// handle errors
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  log.debug(err.message)
+  log.error(err)
+});
+
+
+
+
 
 // set port
 app.set('port', conf.port)
@@ -58,8 +82,3 @@ models.sequelize.sync().then(() => {
   })
 })
 
-// handle errors
-app.use(function(err, req, res, next) {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
