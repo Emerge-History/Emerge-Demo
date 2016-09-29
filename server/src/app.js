@@ -41,7 +41,7 @@ app.use('/api', routes)
 // handle errors
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
-    res.status(500).json({
+    res.status(403).json({
       msg: '验证失败！',
       success: false
     })

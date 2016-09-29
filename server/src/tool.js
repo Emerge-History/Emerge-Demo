@@ -1,5 +1,13 @@
 // ==============================================bcrypt start
 import bcrypt from 'bcryptjs'
+
+export const bhashSync = (str) => {
+  const salt = bcrypt.genSaltSync(10);
+  return bcrypt.hashSync(str, salt);
+}
+export const bcompareSync = (str, hash) => {
+  return bcrypt.compareSync(str, hash);
+}
 export const bhash = (str, cb) => {
   bcrypt.hash(str, 10, cb)
 }
@@ -42,41 +50,50 @@ export { validator }
 import nodemailer from 'nodemailer'
 import smtpTransport from 'nodemailer-smtp-transport'
 import config from './config'
-const transporter = nodemailer.createTransport(smtpTransport(config.mail));
+const transporter = nodemailer.createTransport(smtpTransport(config.mail))
 
 const mail = {}
 const sendMail = data => {
   transporter.sendMail(data, function (err, info) {
     if (err) {
-    	// TODO 打印日志
-      console.log('err:', err);
+      // TODO 打印日志
+      console.log('err:', err)
     } else {
-      console.log('Message sent: ' + info.response);
+      console.log('Message sent: ' + info.response)
     }
-  });
+  })
 }
 
 mail.sendWelcomeMail = (username, email) => {
   sendMail({
-	  from: config.mail.auth.user,
-	  to: email,
-	  subject: '欢迎使用emergeDemo',
-	  html: '<p>您好：' + username + '</p>' +
-	  '<p>我们收到您在emergeDemo的注册信息，欢迎使用emergeDemo</p>' +
-	  '<p>本邮件由系统自动发出，请勿直接回复</p>'
-  });
-}
-
-mail.sendFindPassMail = (email, code) => {
-  sendMail({
     from: config.mail.auth.user,
     to: email,
     subject: '欢迎使用emergeDemo',
-    html: '<p>您好!</p>' +
-    '<p>验证码：' + code + '，感谢您注册emergeDemo，请在10分钟内完成注册。工作人员不会向您索取验证码，请勿泄露。消息来自：emergeDemo</p>' +
-    '<p>本邮件由系统自动发出，请勿直接回复</p>'
-  });
+    html: '<p>您好：' + username + '</p>' +
+      '<p>我们收到您在emergeDemo的注册信息，欢迎使用emergeDemo</p>' +
+      '<p>本邮件由系统自动发出，请勿直接回复</p>'
+  })
 }
 
-export {mail}
+mail.sendVerifyMail = (email, code) => {
+  sendMail({ from : config.mail.auth.user,
+    to: email,
+    subject: '欢迎使用emergeDemo',
+    html: '<p>您好!</p>' +
+      '<p>验证码：' + code + '，感谢您注册emergeDemo，请在10分钟内完成注册。工作人员不会向您索取验证码，请勿泄露。消息来自：emergeDemo</p>' +
+      '<p>本邮件由系统自动发出，请勿直接回复</p>'
+  })
+}
+
+mail.sendFindPassMail = (email, code) => {
+  sendMail({ from : config.mail.auth.user,
+    to: email,
+    subject: 'emergeDemo找回密码',
+    html: '<p>您好!</p>' +
+      '<p>验证链接：' + '<a href="'+ 'http://127.0.0.1:8080/reset?code=' + code  +'">'+ 'http://127.0.0.1:8080/reset?code='+ code + '</a>' +'</p>'+
+      '<p>本邮件由系统自动发出，请勿直接回复</p>'
+  })
+}
+
+export { mail }
 // ==============================================mail end

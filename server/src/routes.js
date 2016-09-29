@@ -15,8 +15,11 @@ router.get('/test2', jwt({secret: config.secret}), sign.test2)
 router.post('/register', sign.register);
 router.post('/login', sign.login);
 
+// register verify 
+// router.get('/verify', sign.verify);
 
-
-
+// reset password
+router.post('/reset', sign.reset)
+router.post('/find_pwd', sign.findPwd)
 
 export default router

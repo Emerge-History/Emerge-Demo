@@ -1,5 +1,5 @@
 export default {
-    env:'development',
+    env:'test',
 	mail: {
         service: 'QQ',
         auth: {
