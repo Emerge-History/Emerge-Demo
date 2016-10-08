@@ -121,7 +121,7 @@ sign.login = async(req, res, next) => {
       return bad(res, '密码错误！')
     } else {
       const token = jwt.sign({
-        user: user.id
+        userId: user.id
       }, config.secret, {
         expiresIn: '30 days'
       })

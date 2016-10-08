@@ -20,10 +20,13 @@ router.post('/reset', sign.reset)
 router.post('/find_pwd', sign.findPwd)
 
 // demo
-router.get('/demos', demo.list)
-router.get('/demos/:id', demo.get)
-router.post('/demos', demo.create)
-router.put('/demos/:id', demo.update)
-router.delete('/demos/:id', demo.remove)
+router.get('/demos', jwt({secret: config.secret}), demo.list)
+router.get('/demos/:id', jwt({secret: config.secret}), demo.get)
+router.post('/demos', jwt({secret: config.secret}), demo.create)
+router.put('/demos/:id', jwt({secret: config.secret}), demo.update)
+router.delete('/demos/:id', jwt({secret: config.secret}), demo.remove)
+
+// preview
+router.get('/preview:id', demo.preview)
 
 export default router
