@@ -10,11 +10,17 @@ import routes from './routes'
 import models from './models'
 import http from 'http'
 import xss from 'xss'
+import path from 'path'
 
 const app = express()
 const server = http.createServer(app)
 const log = log4js.getLogger('DEBUG::log')
 const conf = config[config.env]
+
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // use middlewares
 app.use(bodyParser.json())
@@ -33,8 +39,6 @@ if (config.env === 'development') {
 
 // use routes
 app.use('/api', routes)
-
-
 
 
 

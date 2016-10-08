@@ -2,7 +2,8 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Demo = sequelize.define("Demo", {
-    title: DataTypes.STRING
+    template: DataTypes.STRING,
+    content: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {

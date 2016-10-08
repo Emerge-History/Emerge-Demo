@@ -16,6 +16,7 @@
     "express": "^4.14.0",
     "express-jwt": "^5.0.0",
     "helmet": "^2.2.0",
+    "jade": "^1.11.0",
     "jsonwebtoken": "^7.1.9",
     "log4js": "^0.6.38",
     "morgan": "^1.7.0",
@@ -24,6 +25,7 @@
     "nodemailer": "^2.6.4",
     "nodemailer-smtp-transport": "^2.7.2",
     "sequelize": "^3.24.3",
+    "serve-favicon": "^2.3.0",
     "sqlite3": "^3.1.4",
     "xss": "^0.2.13"
   },
